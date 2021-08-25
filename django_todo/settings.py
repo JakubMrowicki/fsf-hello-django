@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-import env.py
 
 development = os.environ.get('DEVELOPMENT', False)
 
@@ -30,7 +29,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-twr7x)(ls06wwa&&dx1_2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
-ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+if development:
+    ALLOWED_HOSTS = ['localhost']
+else:
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
